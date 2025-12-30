@@ -1,0 +1,656 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #000000;
+  color: #FFFFFF;
+  min-height: 100vh;
+}
+
+/* Page System */
+.page {
+  display: none;
+  min-height: 100vh;
+}
+
+.page.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Upload Page */
+.upload-container {
+  max-width: 600px;
+  width: 100%;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.logo-header {
+  margin-bottom: 40px;
+}
+
+.threads-logo {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+}
+
+.logo-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.logo-header .year-svg-header {
+  width: 150px;
+  height: 60px;
+  display: block;
+  margin: 0 auto;
+}
+
+.drop-zone {
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+  padding: 60px 40px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.drop-zone:hover,
+.drop-zone.dragover {
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.upload-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+  opacity: 0.6;
+}
+
+.drop-text {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.drop-subtext {
+  font-size: 14px;
+  color: #666666;
+}
+
+.instructions {
+  margin-top: 40px;
+  text-align: left;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+}
+
+.instructions p {
+  font-size: 14px;
+  font-weight: 600;
+  color: #888888;
+  margin-bottom: 12px;
+}
+
+.instructions ol {
+  padding-left: 20px;
+  color: #666666;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* Loading Page */
+.loading-container {
+  text-align: center;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 24px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#loading-text {
+  font-size: 16px;
+  color: #888888;
+  margin-bottom: 24px;
+}
+
+.progress-bar {
+  width: 200px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #FFFFFF;
+  transition: width 0.3s ease;
+}
+
+/* Result Page */
+#result-page {
+  padding: 40px 20px;
+  flex-direction: column;
+}
+
+.result-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Wrapped Container - Main Card */
+.container {
+  width: 1080px;
+  height: 1080px;
+  background: linear-gradient(180deg, #000000 0%, #0a0a0a 50%, #101010 100%);
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform-origin: top center;
+}
+
+@media (max-width: 1120px) {
+  .container {
+    transform: scale(0.8);
+    margin: -108px 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    transform: scale(0.6);
+    margin: -216px 0;
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    transform: scale(0.4);
+    margin: -324px 0;
+  }
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: -150px;
+  right: -150px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 48px;
+  height: 48px;
+}
+
+.logo-text {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.year-badge {
+  text-align: right;
+}
+
+.year-badge .wrapped {
+  font-size: 16px;
+  font-weight: 500;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.year-badge .year-svg {
+  width: 120px;
+  height: 50px;
+  display: block;
+}
+
+/* Top Stats Row */
+.top-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr;
+  gap: 16px;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 110px;
+}
+
+.stat-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #c3c3c3;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.stat-value {
+  font-size: 36px;
+  font-weight: 800;
+  text-align: right;
+}
+
+/* Weekly Chart */
+.weekly-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 50px;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.weekly-bar {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.weekly-bar.active {
+  background: #FFFFFF;
+}
+
+.weekly-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+
+.weekly-labels span {
+  flex: 1;
+  text-align: center;
+  font-size: 9px;
+  color: #666666;
+}
+
+.weekly-labels span.active {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+/* Heatmap */
+.heatmap-section {}
+
+.section-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #c3c3c3;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.heatmap-wrapper {
+  width: 100%;
+}
+
+.heatmap-container {
+  display: flex;
+  gap: 6px;
+}
+
+.heatmap-days {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-right: 4px;
+}
+
+.heatmap-days span {
+  font-size: 9px;
+  color: #666666;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.heatmap {
+  display: grid;
+  grid-template-columns: repeat(53, 1fr);
+  gap: 2px;
+  flex: 1;
+}
+
+.heatmap-week {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.heatmap-cell {
+  aspect-ratio: 1;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.03);
+  transition: background 0.3s ease;
+}
+
+.heatmap-cell.empty {
+  background: transparent;
+}
+
+.heatmap-cell.level-1 {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.heatmap-cell.level-2 {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.heatmap-cell.level-3 {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.heatmap-cell.level-4 {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.heatmap-cell.level-5 {
+  background: #FFFFFF;
+}
+
+.heatmap-months {
+  display: flex;
+  margin-top: 8px;
+  margin-left: 28px;
+}
+
+.heatmap-months span {
+  font-size: 10px;
+  color: #666666;
+  flex: 1;
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.heatmap-legend span {
+  font-size: 10px;
+  color: #444444;
+}
+
+.heatmap-legend span:first-child {
+  margin-right: 4px;
+}
+
+.heatmap-legend span:last-child {
+  margin-left: 4px;
+}
+
+.legend-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+/* Middle Section */
+.middle-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.list-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.list-card h3 {
+  font-size: 11px;
+  font-weight: 600;
+  color: #c3c3c3;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.list-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.list-rank {
+  font-size: 18px;
+  font-weight: 800;
+  color: #c3c3c3;
+  width: 28px;
+}
+
+.list-content {
+  flex: 1;
+}
+
+.list-name {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Bottom Stats */
+.bottom-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.bottom-stat {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 16px;
+  height: 85px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.bottom-stat .label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #c3c3c3;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.bottom-stat .value {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.bottom-stat .emoji {
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-text {
+  font-size: 12px;
+  color: #444444;
+  letter-spacing: 1px;
+}
+
+.username {
+  font-size: 14px;
+  font-weight: 600;
+  color: #888888;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.download-btn,
+.restart-btn {
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.download-btn {
+  background: #FFFFFF;
+  color: #000000;
+  border: none;
+}
+
+.download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+}
+
+.download-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.restart-btn {
+  background: transparent;
+  color: #888888;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.restart-btn:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #FFFFFF;
+}
+
+/* Animations */
+.animate-item {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.animate-item.visible {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.count-up {
+  transition: all 0.05s ease;
+}
+
+/* Heatmap Animation */
+.heatmap-cell {
+  opacity: 0;
+}
+
+.heatmap-cell.animate {
+  animation: cellFadeIn 0.1s ease forwards;
+}
+
+@keyframes cellFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Weekly Bar Animation */
+.weekly-bar {
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+
+.weekly-bar.animate {
+  animation: barGrow 0.5s ease forwards;
+}
+
+@keyframes barGrow {
+  to {
+    transform: scaleY(1);
+  }
+}

@@ -15,10 +15,6 @@ export default class Page05Streak extends StoryPage {
         <span class="streak-number">${this.stats.longestStreak}</span>
         <span class="streak-unit">天連續發文</span>
       </div>
-      <div class="flame-container">
-        <div class="flame"></div>
-        <div class="flame-glow"></div>
-      </div>
     `;
     return el;
   }
@@ -29,12 +25,6 @@ export default class Page05Streak extends StoryPage {
     // 標籤淡入
     const label = el.querySelector('.label');
     label.classList.add('visible');
-
-    await this.delay(200);
-
-    // 火焰燃燒動畫
-    const flame = el.querySelector('.flame');
-    flame.classList.add('burning');
 
     await this.delay(400);
 

@@ -40,7 +40,7 @@ export default class Page03TotalPosts extends StoryPage {
     // 貼文圖示飛入
     await this.delay(500);
     const icons = el.querySelector('.post-icons');
-    const iconCount = Math.min(Math.ceil(this.stats.totalPosts / 300), 15);
+    const iconCount = 10;
     for (let i = 0; i < iconCount; i++) {
       const icon = document.createElement('div');
       icon.className = 'post-icon';

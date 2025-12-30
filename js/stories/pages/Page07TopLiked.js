@@ -8,14 +8,20 @@ import { StoryPage } from '../StoryPage.js';
 export default class Page07TopLiked extends StoryPage {
   render() {
     const el = super.render();
-    const topUser = this.stats.topInteractions[0] || { username: '-', count: 0 };
+    const topUsers = this.stats.topInteractions.slice(0, 3);
     el.classList.add('page-top-liked');
+
+    const rankingItems = topUsers.map((user, index) => `
+      <div class="ranking-item rank-${index + 1}">
+        <span class="ranking-name">${user.username}</span>
+        <span class="ranking-count">${user.count} 次</span>
+      </div>
+    `).join('');
+
     el.innerHTML = `
-      <p class="label">你最常幫他按讚</p>
-      <div class="liked-user">
-        <div class="user-avatar"></div>
-        <div class="user-name">${topUser.username}</div>
-        <div class="like-count">${topUser.count} 次</div>
+      <p class="label">你最常幫他們按讚</p>
+      <div class="ranking-list">
+        ${rankingItems}
       </div>
       <div class="hearts-container"></div>
     `;
@@ -31,11 +37,14 @@ export default class Page07TopLiked extends StoryPage {
 
     await this.delay(300);
 
-    // 使用者卡片滑入
-    const user = el.querySelector('.liked-user');
-    user.classList.add('visible');
+    // 排名依序滑入
+    const items = el.querySelectorAll('.ranking-item');
+    for (const item of items) {
+      item.classList.add('visible');
+      await this.delay(250);
+    }
 
-    await this.delay(400);
+    await this.delay(200);
 
     // 愛心飄落
     const hearts = el.querySelector('.hearts-container');

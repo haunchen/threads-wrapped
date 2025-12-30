@@ -10,16 +10,8 @@ export default class Page02FirstPost extends StoryPage {
     const el = super.render();
     el.classList.add('page-first-post');
     el.innerHTML = `
-      <div class="diary-book">
-        <div class="diary-cover">
-          <div class="diary-spine"></div>
-        </div>
-        <div class="diary-page">
-          <p class="label">一切從這天開始...</p>
-          <h2 class="date">${this.stats.firstPostDate}</h2>
-          <div class="decorative-line"></div>
-        </div>
-      </div>
+      <p class="label">一切從這天開始...</p>
+      <div class="date-display">${this.stats.firstPostDate}</div>
     `;
     return el;
   }
@@ -27,20 +19,14 @@ export default class Page02FirstPost extends StoryPage {
   async animateIn(el) {
     el.classList.add('active');
 
+    // 標籤淡入
+    const label = el.querySelector('.label');
+    label.classList.add('visible');
+
     await this.delay(300);
 
-    // 日記本封面翻開
-    const cover = el.querySelector('.diary-cover');
-    cover.classList.add('flip-open');
-
-    await this.delay(800);
-
-    // 內頁內容淡入
-    const page = el.querySelector('.diary-page');
-    page.classList.add('reveal');
-
-    // 標籤淡入
-    const label = page.querySelector('.label');
-    label.classList.add('visible');
+    // 日期顯示
+    const dateDisplay = el.querySelector('.date-display');
+    dateDisplay.classList.add('visible');
   }
 }

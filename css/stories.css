@@ -310,86 +310,16 @@
 }
 
 /* ===== 第 2 頁：起點 ===== */
-.page-first-post {
-  perspective: 1000px;
-}
-
-.page-first-post .diary-book {
-  position: relative;
-  width: 280px;
-  height: 360px;
-}
-
-.page-first-post .diary-cover {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #3a3a3a, #1a1a1a);
-  border-radius: 4px 12px 12px 4px;
-  transform-origin: left center;
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
-  z-index: 2;
-}
-
-.page-first-post .diary-spine {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 20px;
-  height: 100%;
-  background: linear-gradient(to right, #222, #333);
-  border-radius: 4px 0 0 4px;
-}
-
-.page-first-post .diary-cover.flip-open {
-  animation: flipOpen 0.8s ease-out forwards;
-}
-
-@keyframes flipOpen {
-  to { transform: rotateY(-160deg); }
-}
-
-.page-first-post .diary-page {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #f5f5dc, #e8e4c9);
-  border-radius: 4px 12px 12px 4px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  box-sizing: border-box;
+.page-first-post .date-display {
+  font-size: 48px;
+  font-weight: 800;
+  color: #fff;
   opacity: 0;
+  margin-top: 16px;
 }
 
-.page-first-post .diary-page.reveal {
-  animation: fadeIn 0.5s ease forwards;
-}
-
-.page-first-post .diary-page .label {
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 16px;
-}
-
-.page-first-post .diary-page .date {
-  color: #333;
-  font-size: 28px;
-  font-weight: 700;
-  margin: 0;
-}
-
-.page-first-post .diary-page .decorative-line {
-  width: 60px;
-  height: 2px;
-  background: #999;
-  margin-top: 24px;
+.page-first-post .date-display.visible {
+  animation: fadeUp 0.5s ease forwards;
 }
 
 /* ===== 第 3 頁：總發文 ===== */
@@ -615,37 +545,45 @@
 .page-words .book:nth-child(5) { width: 95px; background: linear-gradient(90deg, #444, #666, #444); }
 
 /* ===== 第 7 頁：互動王 ===== */
-.page-top-liked .liked-user {
+.page-top-liked .ranking-list {
   display: flex;
   flex-direction: column;
   align-items: center;
-  opacity: 0;
+  gap: 16px;
 }
 
-.page-top-liked .liked-user.visible {
+.page-top-liked .ranking-item {
+  opacity: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.page-top-liked .ranking-item.visible {
   animation: slideIn 0.5s ease forwards;
 }
 
-.page-top-liked .user-avatar {
-  width: 100px;
-  height: 100px;
-  background: linear-gradient(135deg, #333, #111);
-  border-radius: 50%;
-  margin-bottom: 20px;
-}
-
-.page-top-liked .user-name {
-  font-size: 32px;
+.page-top-liked .ranking-name {
   font-weight: 700;
   color: #fff;
 }
 
-.page-top-liked .like-count {
-  font-size: 48px;
-  font-weight: 800;
+.page-top-liked .ranking-count {
+  font-weight: 600;
   color: #ff4757;
-  margin-top: 8px;
 }
+
+/* 第一名 - 最大 */
+.page-top-liked .rank-1 .ranking-name { font-size: 36px; }
+.page-top-liked .rank-1 .ranking-count { font-size: 36px; }
+
+/* 第二名 - 中等 */
+.page-top-liked .rank-2 .ranking-name { font-size: 28px; }
+.page-top-liked .rank-2 .ranking-count { font-size: 28px; }
+
+/* 第三名 - 最小 */
+.page-top-liked .rank-3 .ranking-name { font-size: 22px; }
+.page-top-liked .rank-3 .ranking-count { font-size: 22px; }
 
 .page-top-liked .hearts-container {
   position: absolute;
@@ -733,17 +671,13 @@
 }
 
 .page-followers .person-row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 250px;
+  position: relative;
+  width: 220px;
+  height: 120px;
 }
 
 .page-followers .person-icon {
-  width: 32px;
-  height: 32px;
-  background: #333;
+  position: absolute;
   border-radius: 50%;
   opacity: 0;
   animation: popIn 0.3s ease forwards;

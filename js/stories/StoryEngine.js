@@ -12,6 +12,7 @@ import Page05Streak from './pages/Page05Streak.js';
 import Page06Words from './pages/Page06Words.js';
 import Page07TopLiked from './pages/Page07TopLiked.js';
 import Page08Keywords from './pages/Page08Keywords.js';
+import Page09AITools from './pages/Page09AITools.js';
 import Page09Followers from './pages/Page09Followers.js';
 import Page10PeakMonth from './pages/Page10PeakMonth.js';
 import Page11Personality from './pages/Page11Personality.js';
@@ -23,7 +24,7 @@ export class StoryEngine {
     this.container = container;
     this.stats = stats;
     this.currentPage = 0;
-    this.totalPages = 13;
+    this.totalPages = 14;
     this.pages = [];
     this.isAnimating = false;
     this.progressBar = null;
@@ -40,6 +41,7 @@ export class StoryEngine {
       Page06Words,
       Page07TopLiked,
       Page08Keywords,
+      Page09AITools,
       Page09Followers,
       Page10PeakMonth,
       Page11Personality,

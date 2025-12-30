@@ -638,6 +638,29 @@
 .page-keywords .cloud-word.size-1 { font-size: 40px; color: #aaa; }
 .page-keywords .cloud-word.size-2 { font-size: 28px; color: #666; }
 
+/* ===== 第 9 頁：AI 工具統計 ===== */
+.page-ai-tools .ai-tool-cloud {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.page-ai-tools .ai-tool-word {
+  font-weight: 700;
+  color: #fff;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.page-ai-tools .ai-tool-word.pop-in {
+  animation: bounceScale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.page-ai-tools .ai-tool-word.size-0 { font-size: 56px; }
+.page-ai-tools .ai-tool-word.size-1 { font-size: 40px; color: #aaa; }
+.page-ai-tools .ai-tool-word.size-2 { font-size: 28px; color: #666; }
+
 /* ===== 第 9 頁：社群成長 ===== */
 .page-followers .growth-display {
   display: flex;

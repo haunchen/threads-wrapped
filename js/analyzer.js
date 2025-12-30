@@ -32,6 +32,7 @@ export class Analyzer {
       weeklyDistribution: this.getWeeklyDistribution(),
       topInteractions: this.getTopInteractions(),
       topKeywords: this.getTopKeywords(),
+      topAITools: this.getTopAITools(),
       favoriteEmoji: this.getFavoriteEmoji(),
       personality: this.determinePersonality(),
       hourlyDistribution: this.getHourlyDistribution(),
@@ -318,5 +319,54 @@ export class Analyzer {
       distribution[post.hour]++;
     }
     return distribution;
+  }
+
+  /**
+   * 統計 AI 工具提及次數
+   */
+  getTopAITools() {
+    // AI 工具關鍵字映射表（小寫 -> 顯示名稱）
+    const aiToolPatterns = [
+      { display: 'Gemini', patterns: ['gemini'] },
+      { display: 'Claude', patterns: ['claude'] },
+      { display: 'ChatGPT', patterns: ['chatgpt', 'gpt'] },
+      { display: 'Grok', patterns: ['grok'] },
+      { display: 'Perplexity', patterns: ['perplexity'] },
+      { display: 'Copilot', patterns: ['copilot'] },
+      { display: 'DeepSeek', patterns: ['deepseek'] },
+      { display: 'Codex', patterns: ['codex'] },
+      { display: 'Cursor', patterns: ['cursor'] },
+      { display: 'Qwen', patterns: ['qwen'] },
+      { display: 'Antigravity', patterns: ['antigravity', '反重力'] }
+    ];
+
+    const toolCounts = {};
+
+    for (const post of this.posts) {
+      if (!post.text) continue;
+
+      const textLower = post.text.toLowerCase();
+
+      for (const tool of aiToolPatterns) {
+        for (const pattern of tool.patterns) {
+          // 使用正則匹配完整單詞（英文）或直接包含（中文）
+          const regex = /[\u4e00-\u9fff]/.test(pattern)
+            ? new RegExp(pattern, 'gi')
+            : new RegExp(`\\b${pattern}\\b`, 'gi');
+
+          const matches = post.text.match(regex);
+          if (matches) {
+            toolCounts[tool.display] = (toolCounts[tool.display] || 0) + matches.length;
+          }
+        }
+      }
+    }
+
+    // 排序並取前三名
+    const sorted = Object.entries(toolCounts)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3);
+
+    return sorted.map(([name, count]) => ({ name, count }));
   }
 }

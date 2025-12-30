@@ -213,6 +213,28 @@ export class Renderer {
         keywordsContainer.innerHTML = '<div class="list-item"><div class="list-name" style="color:#666">尚無資料</div></div>';
       }
     }
+
+    // 常用 AI 工具
+    const aiToolsContainer = document.getElementById('top-ai-tools');
+    if (aiToolsContainer) {
+      aiToolsContainer.innerHTML = '';
+      this.stats.topAITools.forEach((tool, i) => {
+        const div = document.createElement('div');
+        div.className = 'list-item';
+        div.innerHTML = `
+          <div class="list-rank">${i + 1}</div>
+          <div class="list-content">
+            <div class="list-name">${tool.name}</div>
+          </div>
+        `;
+        aiToolsContainer.appendChild(div);
+      });
+
+      // 如果沒有資料，顯示預設
+      if (this.stats.topAITools.length === 0) {
+        aiToolsContainer.innerHTML = '<div class="list-item"><div class="list-name" style="color:#666">尚無資料</div></div>';
+      }
+    }
   }
 
   /**

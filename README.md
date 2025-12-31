@@ -1,4 +1,6 @@
-# Threads Wrapped 2025
+![Threads Wrapped](images/threads-wrapped_cover.webp)
+
+# Threads Wrapped
 
 你的 Threads 年終回顧工具 — 將你一整年的串文數據轉化為精美的統計報告。
 
@@ -98,3 +100,13 @@ open http://localhost:8000
 ## 授權
 
 本專案採用 [MIT License](LICENSE) 授權。
+
+## Author
+
+Made by [法蘭克](https://www.threads.com/@frankchen.tw) & [阿璋](https://www.threads.com/@azlife_1224)
+
+Tech Blog: [frankchen.tw](https://www.frankchen.tw/)
+
+Hao Tool: [haotool.org](https://haotool.org/)
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-支持我們-orange?style=flat-square&logo=buy-me-a-coffee)](https://buymeacoffee.com/frankchentw)

@@ -15,7 +15,7 @@ const OPTIONAL_FILES = ['archived_threads.json'];
 
 export class ZipHandler {
   constructor(progressCallback) {
-    this.progressCallback = progressCallback || (() => {});
+    this.progressCallback = progressCallback || (() => { });
   }
 
   /**
@@ -103,6 +103,8 @@ export class ZipHandler {
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
       script.src = 'https://unpkg.com/@zip.js/zip.js@2.7.52/dist/zip-full.min.js';
+      script.integrity = 'sha384-zGEY8XQ+zo+3ItEKldF+10B3U9LS3RaAuVPvN0/vh1CD98M0lNBhi1LE163c3lcr';
+      script.crossOrigin = 'anonymous';
       script.onload = () => resolve(window.zip);
       script.onerror = () => reject(new Error('無法載入 ZIP 處理函式庫，請檢查網路連線。'));
       document.head.appendChild(script);

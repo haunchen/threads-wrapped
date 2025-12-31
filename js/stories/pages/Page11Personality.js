@@ -22,7 +22,7 @@ export default class Page11Personality extends StoryPage {
       <p class="label">你是...</p>
       <div class="personality-content">
         <div class="personality-icon">${emoji}</div>
-        <h2 class="personality-title">${title}</h2>
+        <h2 class="personality-title">${this.escapeHTML(title)}</h2>
       </div>
     `;
     return el;

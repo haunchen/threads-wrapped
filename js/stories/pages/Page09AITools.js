@@ -16,7 +16,7 @@ export default class Page09AITools extends StoryPage {
       <p class="label">你最常提及的 AI 工具</p>
       <div class="ai-tool-cloud">
         ${tools.map((tool, i) => `
-          <span class="ai-tool-word size-${i}" style="--delay: ${i * 0.2}s">${tool.name}</span>
+          <span class="ai-tool-word size-${i}" style="--delay: ${i * 0.2}s">${this.escapeHTML(tool.name)}</span>
         `).join('')}
       </div>
     `;

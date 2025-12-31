@@ -16,7 +16,7 @@ export default class Page08Keywords extends StoryPage {
       <p class="label">這些詞佔據你的腦海</p>
       <div class="word-cloud">
         ${keywords.map((word, i) => `
-          <span class="cloud-word size-${i}" style="--delay: ${i * 0.2}s">${word}</span>
+          <span class="cloud-word size-${i}" style="--delay: ${i * 0.2}s">${this.escapeHTML(word)}</span>
         `).join('')}
       </div>
     `;

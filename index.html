@@ -12,6 +12,16 @@
   <meta name="theme-color" content="#000000">
   <link rel="canonical" href="https://threads-wrapped.frankchen.tw/">
 
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://unpkg.com 'unsafe-inline' blob:;
+    worker-src 'self' blob:;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data: https://threads-wrapped.frankchen.tw blob:;
+    connect-src 'self' https://unpkg.com;
+  ">
+
   <!-- Open Graph -->
   <meta property="og:title" content="Threads Wrapped - 你的年度回顧">
   <meta property="og:description" content="回顧你的 Threads 年度精彩時刻，查看發文統計、互動數據與個人化年度報告">
@@ -142,13 +152,13 @@
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const navMenu = document.getElementById('nav-menu');
 
-    hamburgerBtn.addEventListener('click', function() {
+    hamburgerBtn.addEventListener('click', function () {
       hamburgerBtn.classList.toggle('active');
       navMenu.classList.toggle('active');
     });
 
     // 點擊外部關閉選單
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       if (!hamburgerBtn.contains(e.target) && !navMenu.contains(e.target)) {
         hamburgerBtn.classList.remove('active');
         navMenu.classList.remove('active');

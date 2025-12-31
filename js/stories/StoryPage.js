@@ -130,4 +130,17 @@ export class StoryPage {
       container.appendChild(star);
     }
   }
+
+  /**
+   * 將 HTML 特殊字元轉義，防止 XSS 攻擊
+   */
+  escapeHTML(str) {
+    if (!str) return '';
+    return str.toString()
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
 }

@@ -13,7 +13,7 @@ export default class Page07TopLiked extends StoryPage {
 
     const rankingItems = topUsers.map((user, index) => `
       <div class="ranking-item rank-${index + 1}">
-        <span class="ranking-name">${user.username}</span>
+        <span class="ranking-name">${this.escapeHTML(user.username)}</span>
       </div>
     `).join('');
 

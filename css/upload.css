@@ -66,6 +66,12 @@
   color: #666666;
 }
 
+.upload-disclaimer {
+  margin-top: 16px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+}
+
 .instructions {
   margin-top: 40px;
   text-align: left;

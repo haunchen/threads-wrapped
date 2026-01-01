@@ -14,6 +14,12 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://threads-wrapped.frankchen.tw/">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/threads-logo-white.svg">
+  <link rel="apple-touch-icon" href="/images/threads-logo-white.svg">
+  <link rel="manifest" href="/site.webmanifest">
+
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
     script-src 'self' https://unpkg.com 'unsafe-inline' blob:;
@@ -49,6 +55,11 @@
   <link rel="preconnect" href="https://unpkg.com">
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://unpkg.com">
+
+  <!-- Preload Critical Resources -->
+  <link rel="preload" href="/css/global.css" as="style">
+  <link rel="preload" href="/css/upload.css" as="style">
+  <link rel="preload" href="/images/threads-logo-white.svg" as="image" type="image/svg+xml">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">

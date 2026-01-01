@@ -971,13 +971,9 @@ body:has(#story-container.active) .site-footer {
   animation: fadeIn 0.5s ease forwards;
 }
 
-.page-ending .threads-logo-ending svg {
+.page-ending .threads-logo-ending img {
   width: 48px;
   height: 48px;
-}
-
-.page-ending .threads-logo-ending svg path {
-  fill: #fff;
 }
 
 .page-ending .threads-logo-ending span {
@@ -1065,7 +1061,7 @@ body:has(#story-container.active) .site-footer {
     margin-bottom: 16px;
   }
 
-  .page-ending .threads-logo-ending svg {
+  .page-ending .threads-logo-ending img {
     width: 40px;
     height: 40px;
   }

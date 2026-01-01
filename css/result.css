@@ -65,18 +65,11 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
 }
 
-.logo-icon {
-  width: 48px;
-  height: 48px;
-}
-
-.logo-text {
-  font-size: 36px;
-  font-weight: 700;
-  letter-spacing: -1px;
+.logo-wordmark {
+  height: 36px;
+  width: auto;
 }
 
 .year-badge {

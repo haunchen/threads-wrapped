@@ -1,0 +1,46 @@
+# Threads Wrapped
+
+> Threads Wrapped 是一個開源的 Threads 年度回顧工具，讓用戶可以查看自己在 Threads 上的年度發文統計、互動數據與個人化報告。所有資料皆在瀏覽器本地處理，完全保護用戶隱私。
+
+## 核心功能
+
+- 統計年度發文數量與字數
+- 找出最活躍的日子與時段
+- 分析連續發文紀錄 (Streak)
+- 列出獲得最多讚的貼文
+- 提取熱門關鍵詞與 Emoji
+- 追蹤粉絲成長趨勢
+- 生成精美的年度回顧圖片
+
+## 隱私保護
+
+- 100% 本地處理，無伺服器
+- 資料不會離開用戶裝置
+- 不使用任何追蹤工具或 Cookie
+- 開源透明，代碼公開可查
+
+## 技術棧
+
+- HTML5 + CSS3 + 原生 JavaScript (ES6 Module)
+- zip.js 處理 ZIP 檔案
+- 無框架依賴，輕量快速
+
+## 使用方式
+
+1. 從 Instagram 設定下載 Threads 資料 (JSON 格式)
+2. 上傳 ZIP 檔案或資料夾到網站
+3. 查看年度回顧統計與故事流
+
+## 關鍵字
+
+threads wrapped, Threads 年終回顧, Threads 年度回顧, Threads Wrapped 2025, Threads 統計分析, Threads 數據分析, 社群媒體年度回顧
+
+## 連結
+
+- [首頁](https://threads-wrapped.frankchen.tw/)
+- [GitHub](https://github.com/haunchen/threads-wrapped)
+- [使用教學](https://www.frankchen.tw/threads-data-export-tutorial/)
+
+## 作者
+
+Made by 法蘭克 ([@frankchen.tw](https://www.threads.com/@frankchen.tw)) & 阿璋 ([@azlife_1224](https://www.threads.com/@azlife_1224))

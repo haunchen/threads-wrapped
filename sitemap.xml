@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- sitemap.xml for Threads Wrapped -->
+<!-- https://threads-wrapped.frankchen.tw/ -->
+<!-- 最後更新: 2026-01-02 -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- 首頁 - 上傳頁面 -->
+  <url>
+    <loc>https://threads-wrapped.frankchen.tw/</loc>
+    <lastmod>2026-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

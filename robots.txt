@@ -1,0 +1,13 @@
+# robots.txt for Threads Wrapped
+# https://threads-wrapped.frankchen.tw/
+# 最後更新: 2026-01-02
+
+# 允許所有爬蟲訪問
+User-agent: *
+Allow: /
+
+# 網站地圖位置
+Sitemap: https://threads-wrapped.frankchen.tw/sitemap.xml
+
+# AI LLM 友好文件
+# 參考: https://llmstxt.org/

@@ -10,20 +10,4 @@
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  <!-- 故事流頁面 -->
-  <url>
-    <loc>https://threads-wrapped.frankchen.tw/story.html</loc>
-    <lastmod>2026-01-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- 結果頁面 -->
-  <url>
-    <loc>https://threads-wrapped.frankchen.tw/result.html</loc>
-    <lastmod>2026-01-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
 </urlset>

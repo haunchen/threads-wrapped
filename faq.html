@@ -11,7 +11,6 @@
       content="Threads Wrapped 常見問題解答：資料安全、使用方式、功能說明、隱私保護等完整指南。"
     />
     <meta name="author" content="法蘭克 & 阿璋" />
-    <meta name="theme-color" content="#000000" />
     <meta name="robots" content="index, follow" />
     <link
       rel="canonical"
@@ -31,20 +30,18 @@
       sizes="180x180"
       href="images/apple-touch-icon.png"
     />
-    <link rel="manifest" href="site.webmanifest" />
 
     <!-- Content Security Policy (Strict CSP for FAQ page) -->
     <meta
       http-equiv="Content-Security-Policy"
       content="
     default-src 'self';
-    script-src 'self' blob: 'sha256-j7NwxtUvujtcBlLI3V4bBAZYFIKZFwW4t3iFptQfWsc=';
-    worker-src 'self' blob:;
+    script-src 'self' 'sha256-j7NwxtUvujtcBlLI3V4bBAZYFIKZFwW4t3iFptQfWsc=';
+    base-uri 'self';
     style-src 'self' https://fonts.googleapis.com;
     font-src 'self' https://fonts.gstatic.com;
-    img-src 'self' data: blob:;
+    img-src 'self' data:;
     connect-src 'self';
-    base-uri 'self';
     form-action 'self';
     upgrade-insecure-requests;
   "
@@ -99,7 +96,6 @@
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"

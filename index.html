@@ -22,12 +22,15 @@
 
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
-    script-src 'self' https://unpkg.com 'unsafe-inline' blob:;
+    script-src 'self' https://unpkg.com 'sha256-8w6dZ4HizWVzkA9rDrSM+ilvz+WbEHxGpgoddQTEA6Q=' blob:;
     worker-src 'self' blob:;
-    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    base-uri 'self';
+    style-src 'self' https://fonts.googleapis.com;
     font-src 'self' https://fonts.gstatic.com;
     img-src 'self' data: https://threads-wrapped.frankchen.tw blob:;
     connect-src 'self' https://unpkg.com;
+    form-action 'self';
+    upgrade-insecure-requests;
   ">
 
   <!-- Open Graph -->

@@ -13,6 +13,7 @@ class ResultApp {
     this.downloadBtn = document.getElementById('download-btn');
     this.replayBtn = document.getElementById('replay-btn');
     this.restartBtn = document.getElementById('restart-btn');
+    this.html2canvasPromise = null;
 
     this.init();
   }
@@ -132,6 +133,7 @@ class ResultApp {
       await new Promise(r => setTimeout(r, 100));
 
       // 對克隆元素截圖
+      const html2canvas = await this.loadHtml2Canvas();
       const canvas = await html2canvas(clone, {
         scale: 2,
         backgroundColor: '#000000',
@@ -170,6 +172,27 @@ class ResultApp {
     localStorage.removeItem('threadsStats');
     // 返回首頁
     window.location.href = 'index.html';
+  }
+
+  loadHtml2Canvas() {
+    if (window.html2canvas) {
+      return Promise.resolve(window.html2canvas);
+    }
+
+    if (this.html2canvasPromise) {
+      return this.html2canvasPromise;
+    }
+
+    this.html2canvasPromise = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://html2canvas.hertzen.com/dist/html2canvas.min.js';
+      script.async = true;
+      script.onload = () => resolve(window.html2canvas);
+      script.onerror = () => reject(new Error('Failed to load html2canvas'));
+      document.head.appendChild(script);
+    });
+
+    return this.html2canvasPromise;
   }
 }
 

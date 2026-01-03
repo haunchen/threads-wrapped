@@ -22,7 +22,7 @@ export default class Page01Opening extends StoryPage {
         <div class="opening-text">
           <p class="subtitle">你的 2025</p>
           <h1 class="title">Threads 之旅</h1>
-          <p class="username">@${this.stats.username}</p>
+          <p class="username">@${this.escapeHTML(this.stats.username)}</p>
         </div>
       </div>
       <p class="tap-hint">點擊繼續</p>

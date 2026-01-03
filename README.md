@@ -18,12 +18,25 @@
 
 ## 功能特色
 
+### 📊 統計分析
 - 統計你的年度發文數量與字數
 - 找出你最活躍的日子與時段
 - 分析你的連續發文紀錄
 - 列出獲得最多讚的貼文
 - 提取你的熱門關鍵詞與 Emoji
 - 追蹤粉絲成長趨勢
+- 視覺化熱力圖展示發文模式
+
+### 🎬 互動體驗
+- Instagram 風格的動態故事流
+- 長按暫停功能，方便截圖分享
+- 響應式設計，支援各種裝置
+- 流暢的頁面切換動畫
+
+### 🔒 隱私與安全
+- 強化的內容安全策略（CSP）
+- 完整的 ARIA 無障礙屬性
+- 符合 OWASP 2025 安全標準
 
 ## 使用方式
 
@@ -55,11 +68,18 @@ threads-wrapped/
 ├── index.html          # 上傳頁面
 ├── result.html         # 統計結果頁面
 ├── story.html          # 故事流頁面
+├── about.html          # 關於頁面
+├── faq.html            # 常見問題
+├── privacy.html        # 隱私政策
 ├── css/                # 樣式檔案
-│   ├── global.css
-│   ├── upload.css
-│   ├── result.css
-│   └── stories.css
+│   ├── global.css      # 全域樣式
+│   ├── upload.css      # 上傳頁面樣式
+│   ├── result.css      # 結果頁面樣式
+│   ├── stories.css     # 故事流樣式
+│   ├── content.css     # 內容頁面共用樣式
+│   ├── about.css       # 關於頁面樣式
+│   ├── faq.css         # FAQ 頁面樣式
+│   └── privacy.css     # 隱私政策樣式
 ├── js/
 │   ├── upload.js       # 上傳邏輯
 │   ├── parser.js       # JSON 解析器
@@ -67,17 +87,63 @@ threads-wrapped/
 │   ├── renderer.js     # 結果渲染
 │   ├── result.js       # 結果頁互動
 │   ├── zip-handler.js  # ZIP 處理
+│   ├── xss-utils.js    # XSS 防護工具
+│   ├── hamburger-menu.js        # 響應式導航選單
+│   ├── responsive-scale.js      # 響應式縮放
+│   ├── story-bootstrap.js       # 故事流啟動器
 │   └── stories/        # 故事流模組
-│       ├── StoryEngine.js
-│       ├── StoryPage.js
-│       └── pages/      # 14 個故事頁面
-└── lib/                # 外部函式庫
+│       ├── StoryEngine.js       # 故事引擎（含長按暫停功能）
+│       ├── StoryPage.js         # 故事頁面基類
+│       └── pages/      # 13 個故事頁面
+│           ├── Page01Opening.js
+│           ├── Page02FirstPost.js
+│           ├── Page03TotalPosts.js
+│           ├── Page04MostActiveDay.js
+│           ├── Page05Streak.js
+│           ├── Page06Words.js
+│           ├── Page07TopLiked.js
+│           ├── Page08Keywords.js
+│           ├── Page09AITools.js
+│           ├── Page09Followers.js
+│           ├── Page10PeakMonth.js
+│           ├── Page11Personality.js
+│           ├── Page12Emoji.js
+│           └── Page13Ending.js
+├── images/             # 圖片資源
+│   ├── favicon.svg
+│   ├── threads-logo-white.svg
+│   ├── threads-logo-wordmark-white.svg
+│   └── threads-wrapped_cover.webp
+└── sitemap.xml         # 網站地圖
 ```
 
-技術棧：
-- HTML5 + CSS3 + 原生 JavaScript（ES6 Module）
-- zip.js（處理 ZIP 檔案）
+### 技術棧
+
+**前端技術**
+- HTML5 語義化標籤
+- CSS3 現代特性（Grid、Flexbox、CSS Variables）
+- 原生 JavaScript（ES6+ Module）
 - 無框架依賴，輕量快速
+
+**第三方函式庫**
+- [zip.js](https://gildas-lormeau.github.io/zip.js/) - ZIP 檔案處理
+
+**安全性**
+- 內容安全策略（CSP）with hash-based script integrity
+- XSS 防護機制
+- 符合 OWASP 2025 安全標準
+
+**SEO 優化**
+- 完整的 Meta Tags（Open Graph、Twitter Card）
+- Schema.org 結構化資料（WebApplication、AboutPage、FAQPage、Organization）
+- 優化的 Sitemap 配置
+- 語義化 HTML5 結構
+
+**無障礙性**
+- 完整的 ARIA 屬性
+- 鍵盤導航支援
+- 螢幕閱讀器友善
+- 符合 WCAG 2.1 AA 標準
 
 ## 本地開發
 
@@ -101,16 +167,70 @@ open http://localhost:8000
 
 本專案採用 [MIT License](LICENSE) 授權。
 
+## 專案特色
+
+### 🎨 設計理念
+- 簡潔現代的使用者介面
+- 流暢的動畫與過場效果
+- Instagram 風格的故事流體驗
+- 響應式設計，完美支援各種裝置
+
+### 🚀 效能優化
+- 純前端實作，無需後端伺服器
+- 本地處理，快速且私密
+- 模組化程式碼架構
+- 優化的資源載入策略
+
+### 📱 跨平台支援
+- 桌面瀏覽器（Chrome、Firefox、Safari、Edge）
+- 行動裝置瀏覽器（iOS Safari、Android Chrome）
+- 平板裝置最佳化
+
 ## 第三方套件
 
-- [zip.js](https://gildas-lormeau.github.io/zip.js/) - BSD-3-Clause
+- [zip.js](https://gildas-lormeau.github.io/zip.js/) - BSD-3-Clause License
+- [html2canvas](https://html2canvas.hertzen.com/) - MIT License（用於結果頁面截圖功能）
 
-## Author
+## 貢獻指南
+
+歡迎提交 Issue 或 Pull Request！
+
+在提交 PR 前，請確保：
+- 程式碼遵循專案風格規範
+- 已完成自我審查
+- 所有功能已測試通過
+- Commit 訊息遵循 Conventional Commits 規範
+
+## 相關連結
+
+- [線上體驗](https://threads-wrapped.frankchen.tw/)
+- [資料匯出教學](https://www.frankchen.tw/threads-data-export-tutorial/)
+- [關於專案](https://threads-wrapped.frankchen.tw/about.html)
+- [常見問題](https://threads-wrapped.frankchen.tw/faq.html)
+- [隱私政策](https://threads-wrapped.frankchen.tw/privacy.html)
+
+## 作者
 
 Made by [法蘭克](https://www.threads.com/@frankchen.tw) & [阿璋](https://www.threads.com/@azlife_1224)
 
-Tech Blog: [frankchen.tw](https://www.frankchen.tw/)
+**法蘭克的連結**
+- Tech Blog: [frankchen.tw](https://www.frankchen.tw/)
+- GitHub: [@Edit-Mr](https://github.com/Edit-Mr)
 
-Hao Tool: [haotool.org](https://haotool.org/)
+**阿璋的連結**
+- Hao Tool: [haotool.org](https://haotool.org/)
+- GitHub: [@s123104](https://github.com/s123104)
+
+### 支持我們
+
+如果這個專案對你有幫助，歡迎請我們喝杯咖啡 ☕
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-支持我們-orange?style=flat-square&logo=buy-me-a-coffee)](https://buymeacoffee.com/frankchentw)
+
+## 致謝
+
+感謝所有使用 Threads Wrapped 的朋友們，你們的支持是我們持續改進的動力！
+
+---
+
+**免責聲明**：本專案與 Meta Platforms, Inc. 無關，非 Meta 官方產品。Threads 是 Meta Platforms, Inc. 的註冊商標。

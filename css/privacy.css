@@ -1,0 +1,14 @@
+/* Privacy Page Styles */
+.privacy-page .content-section ul li::before {
+  content: '✓';
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.privacy-page .contact-link {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: underline;
+}
+
+.privacy-page .contact-link:hover {
+  color: #ffffff;
+}

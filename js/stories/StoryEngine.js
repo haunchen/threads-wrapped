@@ -18,6 +18,7 @@ import Page10PeakMonth from './pages/Page10PeakMonth.js';
 import Page11Personality from './pages/Page11Personality.js';
 import Page12Emoji from './pages/Page12Emoji.js';
 import Page13Ending from './pages/Page13Ending.js';
+import { escapeHTML } from '../xss-utils.js';
 
 export class StoryEngine {
   constructor(container, stats) {
@@ -32,6 +33,9 @@ export class StoryEngine {
     this.onComplete = null;
     this.autoPlayTimer = null;
     this.pageDuration = 3000; // 每頁停留 3 秒
+    this.isPaused = false; // 長按暫停狀態
+    this.pauseStartTime = 0; // 暫停開始時間
+    this.remainingTime = 0; // 剩餘時間
 
     // 頁面類別陣列
     this.pageClasses = [
@@ -48,7 +52,7 @@ export class StoryEngine {
       Page10PeakMonth,
       Page11Personality,
       Page12Emoji,
-      Page13Ending
+      Page13Ending,
     ];
   }
 
@@ -66,7 +70,15 @@ export class StoryEngine {
       await this.showPage(0);
     } catch (error) {
       console.error('StoryEngine init error:', error);
-      this.container.innerHTML = `<div style="color: red; padding: 20px;">載入故事流時發生錯誤：${error.message}</div>`;
+      this.container.innerHTML = `
+        <div class="story-error">
+          <div class="story-error__card">
+            <h2>載入故事流時發生錯誤</h2>
+            <p>${escapeHTML(error.message)}</p>
+            <a class="story-error__button" href="index.html">返回首頁</a>
+          </div>
+        </div>
+      `;
     }
   }
 
@@ -108,8 +120,34 @@ export class StoryEngine {
    * 綁定點擊事件
    */
   bindEvents() {
+    let longPressTimer = null;
+    let ignoreClick = false;
+
+    this.container.addEventListener('selectstart', (e) => e.preventDefault());
+    this.container.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    // 長按開始（桌面）
+    this.container.addEventListener('mousedown', (e) => {
+      longPressTimer = setTimeout(() => {
+        this.pauseStory();
+      }, 200);
+    });
+
+    // 長按結束（桌面）
+    this.container.addEventListener('mouseup', (e) => {
+      clearTimeout(longPressTimer);
+      if (this.isPaused) {
+        this.resumeStory();
+        ignoreClick = true;
+      }
+    });
+
     // 點擊畫面切換頁面
     this.container.addEventListener('click', (e) => {
+      if (ignoreClick) {
+        ignoreClick = false;
+        return;
+      }
       if (this.isAnimating) return;
 
       // 點擊左半邊返回上一頁，右半邊下一頁
@@ -139,22 +177,41 @@ export class StoryEngine {
 
     // 觸控滑動支援
     let touchStartX = 0;
-    this.container.addEventListener('touchstart', (e) => {
-      touchStartX = e.touches[0].clientX;
-    }, { passive: true });
+    this.container.addEventListener(
+      "touchstart",
+      (e) => {
+        touchStartX = e.touches[0].clientX;
+        longPressTimer = setTimeout(() => {
+          this.pauseStory();
+        }, 200);
+      },
+      { passive: true }
+    );
 
-    this.container.addEventListener('touchend', (e) => {
-      const touchEndX = e.changedTouches[0].clientX;
-      const diff = touchStartX - touchEndX;
+    this.container.addEventListener(
+      "touchend",
+      (e) => {
+        clearTimeout(longPressTimer);
 
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) {
-          this.nextPage();
-        } else {
-          this.prevPage();
+        if (this.isPaused) {
+          this.resumeStory();
+          ignoreClick = true;
+          return;
         }
-      }
-    }, { passive: true });
+
+        const touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) {
+            this.nextPage();
+          } else {
+            this.prevPage();
+          }
+        }
+      },
+      { passive: true }
+    );
 
     // 監聽重新播放事件
     window.addEventListener('restartStory', () => {
@@ -166,6 +223,7 @@ export class StoryEngine {
    * 切換到下一頁
    */
   async nextPage() {
+    if (this.isAnimating) return;
     this.stopAutoPlay();
     if (this.currentPage >= this.totalPages - 1) {
       // 已經在最後一頁，觸發完成回調
@@ -174,6 +232,7 @@ export class StoryEngine {
       }
       return;
     }
+    this.isAnimating = true;
     await this.showPage(this.currentPage + 1);
   }
 
@@ -181,8 +240,10 @@ export class StoryEngine {
    * 切換到上一頁
    */
   async prevPage() {
+    if (this.isAnimating) return;
     this.stopAutoPlay();
     if (this.currentPage <= 0) return;
+    this.isAnimating = true;
     await this.showPage(this.currentPage - 1);
   }
 
@@ -246,6 +307,9 @@ export class StoryEngine {
     // 最後一頁不自動播放
     if (this.currentPage >= this.totalPages - 1) return;
 
+    this.remainingTime = this.pageDuration;
+    this.pauseStartTime = Date.now();
+
     this.autoPlayTimer = setTimeout(() => {
       this.nextPage();
     }, this.pageDuration);
@@ -258,6 +322,59 @@ export class StoryEngine {
     if (this.autoPlayTimer) {
       clearTimeout(this.autoPlayTimer);
       this.autoPlayTimer = null;
+    }
+  }
+
+  /**
+   * 暫停故事播放（長按時）
+   */
+  pauseStory() {
+    if (this.isPaused) return;
+
+    this.isPaused = true;
+    this.stopAutoPlay();
+
+    // 計算剩餘時間
+    const elapsed = Date.now() - this.pauseStartTime;
+    this.remainingTime = Math.max(0, this.remainingTime - elapsed);
+
+    // 暫停進度條動畫
+    const activeSegment = this.progressBar.querySelector(
+      ".progress-segment.active"
+    );
+    if (activeSegment) {
+      activeSegment.style.animationPlayState = 'paused';
+    }
+
+    // 添加暫停視覺效果
+    this.container.classList.add('story-paused');
+  }
+
+  /**
+   * 恢復故事播放
+   */
+  resumeStory() {
+    if (!this.isPaused) return;
+
+    this.isPaused = false;
+    this.pauseStartTime = Date.now();
+
+    // 恢復進度條動畫
+    const activeSegment = this.progressBar.querySelector(
+      ".progress-segment.active"
+    );
+    if (activeSegment) {
+      activeSegment.style.animationPlayState = 'running';
+    }
+
+    // 移除暫停視覺效果
+    this.container.classList.remove('story-paused');
+
+    // 使用剩餘時間繼續自動播放
+    if (this.currentPage < this.totalPages - 1) {
+      this.autoPlayTimer = setTimeout(() => {
+        this.nextPage();
+      }, this.remainingTime);
     }
   }
 }

@@ -33,7 +33,8 @@
       http-equiv="Content-Security-Policy"
       content="
     default-src 'self';
-    script-src 'self' https://unpkg.com 'sha256-8w6dZ4HizWVzkA9rDrSM+ilvz+WbEHxGpgoddQTEA6Q=';
+    script-src 'self' https://unpkg.com 'sha256-8w6dZ4HizWVzkA9rDrSM+ilvz+WbEHxGpgoddQTEA6Q=' blob:;
+    worker-src 'self' blob:;
     base-uri 'self';
     style-src 'self' https://fonts.googleapis.com;
     font-src 'self' https://fonts.gstatic.com;
@@ -318,7 +319,6 @@
           role="dialog"
           aria-modal="true"
           aria-labelledby="upload-modal-title"
-          aria-hidden="true"
         >
           <div class="upload-modal-content">
             <p id="upload-modal-title" class="upload-modal-title">

@@ -725,3 +725,23 @@
     font-size: 8px;
   }
 }
+/* Heatmap Legend Levels */
+.legend-level-0 {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.legend-level-1 {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.legend-level-2 {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.legend-level-3 {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.legend-level-4 {
+  background: #FFFFFF;
+}

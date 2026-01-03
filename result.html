@@ -41,28 +41,23 @@
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://html2canvas.hertzen.com">
 
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://html2canvas.hertzen.com;
+    base-uri 'self';
+    style-src 'self' https://fonts.googleapis.com 'unsafe-hashes' 'sha256-Vr7Ua4SsQMqG1pdTtwAVeYsKLqBy0WKhbh2jlqEw8SI=' 'sha256-bBj2v8lDWwTf1noDGGm5LZvzK563P4b8IkczioGatwc=' 'sha256-3hVZr9p5gxeUWHDnEIYDl+3px1aMpdfk1TiSxR+E3AU=' 'sha256-mcEtfryoh3ZSs9pq+wzOA3vGPHNdKtYr3zCVdBpexHQ=' 'sha256-9KTa3VNMmypk8vbtqjwun0pXQtx5+yn5QoD/WlzV4qM=';
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data: blob:;
+    connect-src 'self' https://html2canvas.hertzen.com;
+    form-action 'self';
+    upgrade-insecure-requests;
+  ">
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/result.css">
-  <script>
-    (function () {
-      function calcScale() {
-        var isMobile = window.innerWidth <= 480;
-        // 手機版：按鈕兩行約 90px + footer 約 60px + padding 24px + gap 32px = 206px
-        // 桌面版：按鈕一行約 50px + footer 約 60px + padding 32px + gap 32px = 174px
-        var reservedHeight = isMobile ? 206 : 174;
-        var padding = isMobile ? 24 : 32;
-        var availableWidth = window.innerWidth - padding;
-        var availableHeight = window.innerHeight - reservedHeight;
-        var scaleW = availableWidth / 1080;
-        var scaleH = availableHeight / 1080;
-        var scale = Math.min(scaleW, scaleH, 1);
-        document.documentElement.style.setProperty('--container-scale', scale);
-      }
-      calcScale();
-      window.addEventListener('resize', calcScale);
-    })();
-  </script>
+  <script src="js/responsive-scale.js"></script>
 </head>
 
 <body>
@@ -89,10 +84,10 @@
               <div class="wrapped">Wrapped</div>
               <svg class="year-svg" viewBox="0 0 120 50" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                  <linearGradient id="yearGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#FFFFFF" />
-                    <stop offset="100%" style="stop-color:#888888" />
-                  </linearGradient>
+                <linearGradient id="yearGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FFFFFF" />
+                  <stop offset="100%" stop-color="#888888" />
+                </linearGradient>
                 </defs>
                 <text x="50%" y="42" text-anchor="middle" fill="url(#yearGradient)" font-family="Inter, sans-serif"
                   font-size="42" font-weight="800">2025</text>
@@ -145,11 +140,11 @@
             </div>
             <div class="heatmap-legend">
               <span>Less</span>
-              <div class="legend-cell" style="background: rgba(255,255,255,0.03)"></div>
-              <div class="legend-cell" style="background: rgba(255,255,255,0.12)"></div>
-              <div class="legend-cell" style="background: rgba(255,255,255,0.25)"></div>
-              <div class="legend-cell" style="background: rgba(255,255,255,0.45)"></div>
-              <div class="legend-cell" style="background: #FFFFFF"></div>
+              <div class="legend-cell legend-level-0"></div>
+              <div class="legend-cell legend-level-1"></div>
+              <div class="legend-cell legend-level-2"></div>
+              <div class="legend-cell legend-level-3"></div>
+              <div class="legend-cell legend-level-4"></div>
               <span>More</span>
             </div>
           </div>

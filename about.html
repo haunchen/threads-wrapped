@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>關於 Threads Wrapped - 你的 Threads 年度回顧工具</title>
+
+    <!-- SEO Meta -->
+    <meta
+      name="description"
+      content="了解 Threads Wrapped 的使命、技術架構與開發團隊。100% 本地處理，完全免費開源的 Threads 年度回顧工具。"
+    />
+    <meta name="author" content="法蘭克 & 阿璋" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="robots" content="index, follow" />
+    <link
+      rel="canonical"
+      href="https://threads-wrapped.frankchen.tw/about.html"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+
+    <!-- Content Security Policy (Strict CSP for about page) -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+    default-src 'self';
+    script-src 'self' blob: 'sha256-yVm1BIVfWCW+yX7BNErmLaTk+lpMc+Q6g7GOMD36+Lc=';
+    worker-src 'self' blob:;
+    style-src 'self' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data: blob:;
+    connect-src 'self';
+    base-uri 'self';
+    form-action 'self';
+    upgrade-insecure-requests;
+  "
+    />
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="關於 Threads Wrapped - 你的 Threads 年度回顧工具"
+    />
+    <meta
+      property="og:description"
+      content="了解 Threads Wrapped 的使命、技術架構與開發團隊。100% 本地處理，完全免費開源。"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://threads-wrapped.frankchen.tw/about.html"
+    />
+    <meta
+      property="og:image"
+      content="https://threads-wrapped.frankchen.tw/images/threads-wrapped_cover.webp"
+    />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="關於 Threads Wrapped" />
+    <meta
+      property="og:image"
+      content="https://threads-wrapped.frankchen.tw/images/threads-wrapped_cover.webp"
+    />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:locale" content="zh_TW" />
+    <meta property="og:site_name" content="Threads Wrapped" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="關於 Threads Wrapped - 你的 Threads 年度回顧工具"
+    />
+    <meta
+      name="twitter:description"
+      content="了解 Threads Wrapped 的使命、技術架構與開發團隊"
+    />
+    <meta
+      name="twitter:image"
+      content="https://threads-wrapped.frankchen.tw/images/threads-wrapped_cover.webp"
+    />
+    <meta name="twitter:image:alt" content="關於 Threads Wrapped" />
+
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JSON-LD Structured Data (@graph for multiple schemas) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "首頁",
+                "item": "https://threads-wrapped.frankchen.tw/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "關於",
+                "item": "https://threads-wrapped.frankchen.tw/about.html"
+              }
+            ]
+          },
+          {
+            "@type": "AboutPage",
+            "name": "關於 Threads Wrapped",
+            "description": "了解 Threads Wrapped 的使命、技術架構與開發團隊",
+            "url": "https://threads-wrapped.frankchen.tw/about.html",
+            "inLanguage": "zh-TW",
+            "mainEntity": {
+              "@type": "WebApplication",
+              "name": "Threads Wrapped",
+              "url": "https://threads-wrapped.frankchen.tw/"
+            }
+          }
+        ]
+      }
+    </script>
+
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/content.css" />
+    <link rel="stylesheet" href="css/about.css" />
+  </head>
+
+  <body>
+    <!-- 漢堡選單 -->
+    <nav class="hamburger-nav" aria-label="主要導航">
+      <button
+        class="hamburger-btn"
+        id="hamburger-btn"
+        aria-label="開啟選單"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+      <div class="nav-menu" id="nav-menu" role="menu" aria-hidden="true">
+        <a href="index.html" role="menuitem">首頁</a>
+        <a href="about.html" role="menuitem" aria-current="page">關於</a>
+        <a href="privacy.html" role="menuitem">隱私政策</a>
+        <a href="faq.html" role="menuitem">常見問題</a>
+        <a
+          href="https://www.frankchen.tw"
+          target="_blank"
+          rel="noopener"
+          role="menuitem"
+          >我的部落格</a
+        >
+      </div>
+    </nav>
+
+    <main class="content-page about-page" role="main" aria-label="關於頁面">
+      <div class="content-shell">
+        <header class="content-hero">
+          <div class="content-eyebrow">Threads Wrapped</div>
+          <h1>關於 Threads Wrapped</h1>
+          <p>
+            一個免費、開源且 100% 本地處理的 Threads 年度回顧工具，讓你用更好看的方式
+            看見自己的成長與影響力。
+          </p>
+        </header>
+
+        <section class="content-section" aria-labelledby="mission">
+          <h2 id="mission">我們的使命</h2>
+          <p>
+            讓每個 Threads
+            用戶都能輕鬆回顧自己的年度精彩時刻，看見自己在社群媒體上的成長與影響力。
+          </p>
+          <p>
+            Threads Wrapped
+            是一個完全免費、開源的年度回顧工具，透過視覺化的方式呈現你的發文統計、互動數據與個人化洞察，幫助你更了解自己的社群媒體足跡。
+          </p>
+        </section>
+
+        <section class="content-section" aria-labelledby="features">
+          <h2 id="features">為什麼選擇 Threads Wrapped？</h2>
+          <ul>
+            <li>
+              <strong>100% 隱私保護</strong
+              >：所有資料都在你的瀏覽器本地處理，完全不會上傳到任何伺服器。我們無法看到、儲存或追蹤你的任何資料。
+            </li>
+            <li>
+              <strong>完全免費</strong
+              >：無需註冊、無需付費、無廣告干擾。我們相信好的工具應該讓所有人都能使用。
+            </li>
+            <li>
+              <strong>開源透明</strong>：所有程式碼公開在
+              GitHub，任何人都可以檢視、審核或貢獻。透明度是我們對用戶信任的承諾。
+            </li>
+            <li>
+              <strong>美觀易用</strong
+              >：精心設計的視覺呈現，讓數據不只是數字，更是一段值得分享的故事。
+            </li>
+            <li>
+              <strong>即時處理</strong>：使用原生 JavaScript
+              技術，無需等待伺服器處理，幾秒鐘內就能看到你的年度回顧。
+            </li>
+            <li>
+              <strong>支援分享</strong>：生成精美的年度報告圖片，可以輕鬆分享到
+              Threads 或其他社群平台。
+            </li>
+          </ul>
+        </section>
+
+        <section class="content-section" aria-labelledby="tech">
+          <h2 id="tech">技術架構</h2>
+          <p>
+            Threads Wrapped 是一個純靜態網站，使用現代 Web
+            技術構建，無需後端伺服器，確保你的資料安全與隱私。
+          </p>
+
+          <div class="tech-stack">
+            <div class="tech-item">
+              <strong>前端技術</strong>
+              <p>
+                HTML5 + CSS3 + 原生 JavaScript (ES6
+                Module)，無框架依賴，輕量快速
+              </p>
+            </div>
+
+            <div class="tech-item">
+              <strong>ZIP 處理</strong>
+              <p>使用 zip.js 函式庫，在瀏覽器中直接解析 Threads 資料壓縮檔</p>
+            </div>
+
+            <div class="tech-item">
+              <strong>截圖功能</strong>
+              <p>使用 html2canvas 函式庫，將年度報告轉換為可分享的圖片</p>
+            </div>
+
+            <div class="tech-item">
+              <strong>安全防護</strong>
+              <p>
+                實作 Strict Content Security Policy (CSP)，防止 XSS
+                攻擊與資料洩露
+              </p>
+            </div>
+
+            <div class="tech-item">
+              <strong>效能優化</strong>
+              <p>響應式設計、資源預載入、字型優化，確保流暢的使用體驗</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-section" aria-labelledby="team">
+          <h2 id="team">開發團隊</h2>
+          <p>
+            Threads Wrapped 由
+            <a
+              href="https://www.threads.com/@frankchen.tw"
+              target="_blank"
+              rel="noopener"
+              >法蘭克</a
+            >
+            和
+            <a
+              href="https://www.threads.com/@azlife_1224"
+              target="_blank"
+              rel="noopener"
+              >阿璋</a
+            >
+            共同開發。
+          </p>
+          <p>
+            我們是兩位熱愛技術與開源文化的開發者，希望透過這個專案讓更多人能夠輕鬆回顧自己的社群媒體歷程，同時展示隱私保護與用戶體驗可以兼顧的可能性。
+          </p>
+          <p>
+            如果你有任何問題、建議或想要貢獻程式碼，歡迎透過 GitHub 或 Threads
+            與我們聯繫。
+          </p>
+        </section>
+
+        <section class="content-section" aria-labelledby="opensource">
+          <h2 id="opensource">開源貢獻</h2>
+          <p>本專案完全開源，採用 MIT 授權條款，歡迎任何形式的貢獻：</p>
+          <ul>
+            <li>回報問題或建議新功能</li>
+            <li>改進程式碼品質或效能</li>
+            <li>完善文件或翻譯</li>
+            <li>分享使用心得與推廣</li>
+          </ul>
+          <p>
+            GitHub 儲存庫：<a
+              href="https://github.com/haunchen/threads-wrapped"
+              target="_blank"
+              rel="noopener"
+              >github.com/haunchen/threads-wrapped</a
+            >
+          </p>
+        </section>
+
+        <section class="content-section" aria-labelledby="disclaimer">
+          <h2 id="disclaimer">免責聲明</h2>
+          <p><strong>本服務與 Meta 無關，非 Meta 官方產品。</strong></p>
+          <p>
+            Threads 和相關商標屬於 Meta Platforms, Inc. 所有。Threads Wrapped
+            是一個獨立的第三方工具，旨在幫助用戶分析自己的 Threads 資料。
+          </p>
+          <p>
+            我們不會收集、儲存或分享你的任何資料。所有資料處理都在你的瀏覽器本地完成。
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <p>
+        Made by
+        <a
+          href="https://www.threads.com/@frankchen.tw"
+          target="_blank"
+          rel="noopener noreferrer"
+          >法蘭克</a
+        >
+        &
+        <a
+          href="https://www.threads.com/@azlife_1224"
+          target="_blank"
+          rel="noopener noreferrer"
+          >阿璋</a
+        >
+      </p>
+
+      <nav aria-label="頁尾導航">
+        <a href="about.html" aria-current="page">關於</a> |
+        <a href="privacy.html">隱私政策</a> |
+        <a href="faq.html">常見問題</a>
+      </nav>
+
+      <p class="disclaimer">所有資料皆本地處理，不會保存你的個資及使用足跡</p>
+      <p class="disclaimer">本服務與 Meta 無關，非 Meta 官方產品</p>
+    </footer>
+
+    <script type="module" src="js/hamburger-menu.js"></script>
+  </body>
+</html>

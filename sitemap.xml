@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- sitemap.xml for Threads Wrapped -->
 <!-- https://threads-wrapped.frankchen.tw/ -->
-<!-- 最後更新: 2026-01-02 -->
+<!-- 最後更新: 2026-01-04 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <!-- 首頁 - 上傳頁面 -->
   <url>
     <loc>https://threads-wrapped.frankchen.tw/</loc>
-    <lastmod>2026-01-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-01-04</lastmod>
   </url>
+
+  <!-- 關於頁面 -->
+  <url>
+    <loc>https://threads-wrapped.frankchen.tw/about.html</loc>
+    <lastmod>2026-01-04</lastmod>
+  </url>
+
+  <!-- 隱私政策 -->
+  <url>
+    <loc>https://threads-wrapped.frankchen.tw/privacy.html</loc>
+    <lastmod>2026-01-04</lastmod>
+  </url>
+
+  <!-- 常見問題 -->
+  <url>
+    <loc>https://threads-wrapped.frankchen.tw/faq.html</loc>
+    <lastmod>2026-01-04</lastmod>
+  </url>
+
+  <!-- 註：result.html 和 story.html 有 noindex，不包含在 sitemap 中 -->
 </urlset>

@@ -8,6 +8,7 @@ export class Modal {
     this.modal = null;
     this.initialized = false;
     this.keydownHandler = null;
+    this.previousActiveElement = null;
   }
 
   /**
@@ -145,6 +146,9 @@ export class Modal {
       secondaryBtn.style.display = 'none';
     }
 
+    // 保存當前焦點元素
+    this.previousActiveElement = document.activeElement;
+
     // 顯示模態窗
     this.modal.classList.add('active');
     primaryBtn.focus();
@@ -155,6 +159,31 @@ export class Modal {
    */
   close() {
     this.modal.classList.remove('active');
+
+    // 恢復焦點到觸發元素
+    if (this.previousActiveElement && typeof this.previousActiveElement.focus === 'function') {
+      // 延遲恢復焦點，確保模態窗完全關閉
+      setTimeout(() => {
+        this.previousActiveElement.focus();
+        this.previousActiveElement = null;
+      }, 100);
+    }
+  }
+
+  /**
+   * 清理資源（移除事件監聽器）
+   */
+  destroy() {
+    if (this.keydownHandler) {
+      document.removeEventListener('keydown', this.keydownHandler);
+      this.keydownHandler = null;
+    }
+    if (this.modal && this.modal.parentNode) {
+      this.modal.parentNode.removeChild(this.modal);
+    }
+    this.modal = null;
+    this.initialized = false;
+    this.previousActiveElement = null;
   }
 
   /**

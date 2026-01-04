@@ -36,11 +36,15 @@ export class Modal {
     this.modal = document.createElement('div');
     this.modal.id = 'app-modal';
     this.modal.className = 'modal-overlay';
+    this.modal.setAttribute('role', 'dialog');
+    this.modal.setAttribute('aria-modal', 'true');
+    this.modal.setAttribute('aria-labelledby', 'modal-title');
+    this.modal.setAttribute('aria-describedby', 'modal-message');
     this.modal.innerHTML = `
-      <div class="modal-content">
-        <div class="modal-icon"></div>
-        <h2 class="modal-title"></h2>
-        <p class="modal-message"></p>
+      <div class="modal-content" role="document">
+        <div class="modal-icon" aria-hidden="true"></div>
+        <h2 id="modal-title" class="modal-title"></h2>
+        <p id="modal-message" class="modal-message"></p>
         <div class="modal-actions">
           <button class="modal-btn modal-btn-primary"></button>
           <button class="modal-btn modal-btn-secondary"></button>

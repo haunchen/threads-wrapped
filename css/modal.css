@@ -51,6 +51,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .modal-icon svg {
@@ -59,22 +60,18 @@
 }
 
 .modal-icon-info {
-  background: rgba(255, 255, 255, 0.1);
   color: #ccc;
 }
 
 .modal-icon-success {
-  background: rgba(255, 255, 255, 0.1);
   color: #fff;
 }
 
 .modal-icon-warning {
-  background: rgba(255, 255, 255, 0.1);
   color: #999;
 }
 
 .modal-icon-error {
-  background: rgba(255, 255, 255, 0.1);
   color: #666;
 }
 
@@ -139,43 +136,6 @@
   background: rgba(255, 255, 255, 0.05);
   color: #fff;
   border-color: #555;
-}
-
-/* 類型特定樣式 - 統一灰階 */
-.modal-info .modal-btn-primary {
-  background: #fff;
-  color: #000;
-}
-
-.modal-info .modal-btn-primary:hover {
-  background: #f0f0f0;
-}
-
-.modal-success .modal-btn-primary {
-  background: #fff;
-  color: #000;
-}
-
-.modal-success .modal-btn-primary:hover {
-  background: #f0f0f0;
-}
-
-.modal-warning .modal-btn-primary {
-  background: #fff;
-  color: #000;
-}
-
-.modal-warning .modal-btn-primary:hover {
-  background: #f0f0f0;
-}
-
-.modal-error .modal-btn-primary {
-  background: #fff;
-  color: #000;
-}
-
-.modal-error .modal-btn-primary:hover {
-  background: #f0f0f0;
 }
 
 /* 響應式設計 */

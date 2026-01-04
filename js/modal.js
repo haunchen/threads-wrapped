@@ -9,6 +9,9 @@ export class Modal {
     this.initialized = false;
     this.keydownHandler = null;
     this.previousActiveElement = null;
+    this.focusableElements = [];
+    this.firstFocusableElement = null;
+    this.lastFocusableElement = null;
   }
 
   /**
@@ -63,13 +66,66 @@ export class Modal {
       }
     });
 
-    // Escape 鍵關閉 - 保存 handler 引用以便清理
+    // 鍵盤事件處理 - 保存 handler 引用以便清理
     this.keydownHandler = (e) => {
-      if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+      if (!this.modal.classList.contains('active')) return;
+
+      // Escape 鍵關閉
+      if (e.key === 'Escape') {
         this.close();
+        return;
+      }
+
+      // Tab 鍵焦點陷阱
+      if (e.key === 'Tab') {
+        this.handleTabKey(e);
       }
     };
     document.addEventListener('keydown', this.keydownHandler);
+  }
+
+  /**
+   * 處理 Tab 鍵實現焦點陷阱
+   * @param {KeyboardEvent} e - 鍵盤事件
+   */
+  handleTabKey(e) {
+    // 更新可聚焦元素列表（動態內容可能改變）
+    this.updateFocusableElements();
+
+    if (this.focusableElements.length === 0) return;
+
+    // Shift + Tab（向後）
+    if (e.shiftKey) {
+      if (document.activeElement === this.firstFocusableElement) {
+        e.preventDefault();
+        this.lastFocusableElement.focus();
+      }
+    }
+    // Tab（向前）
+    else {
+      if (document.activeElement === this.lastFocusableElement) {
+        e.preventDefault();
+        this.firstFocusableElement.focus();
+      }
+    }
+  }
+
+  /**
+   * 更新可聚焦元素列表
+   */
+  updateFocusableElements() {
+    const focusableSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    this.focusableElements = Array.from(
+      this.modal.querySelectorAll(focusableSelector)
+    ).filter(el => {
+      // 過濾掉隱藏或禁用的元素
+      return !el.disabled &&
+             el.offsetParent !== null &&
+             getComputedStyle(el).display !== 'none';
+    });
+
+    this.firstFocusableElement = this.focusableElements[0];
+    this.lastFocusableElement = this.focusableElements[this.focusableElements.length - 1];
   }
 
   /**
@@ -151,6 +207,11 @@ export class Modal {
 
     // 顯示模態窗
     this.modal.classList.add('active');
+
+    // 初始化焦點陷阱
+    this.updateFocusableElements();
+
+    // 聚焦到主按鈕
     primaryBtn.focus();
   }
 
@@ -184,6 +245,9 @@ export class Modal {
     this.modal = null;
     this.initialized = false;
     this.previousActiveElement = null;
+    this.focusableElements = [];
+    this.firstFocusableElement = null;
+    this.lastFocusableElement = null;
   }
 
   /**

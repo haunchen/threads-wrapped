@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 從 localStorage 讀取 stats
   const statsJson = localStorage.getItem('threadsStats');
   if (!statsJson) {
-    window.location.href = 'index.html';
+    modal.showNoData();
     return;
   }
 

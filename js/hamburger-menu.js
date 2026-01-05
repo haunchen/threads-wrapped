@@ -24,6 +24,7 @@ export function initHamburgerMenu() {
     // 更新 ARIA 屬性
     hamburgerBtn.setAttribute('aria-expanded', isActive);
     hamburgerBtn.setAttribute('aria-label', isActive ? '關閉選單' : '開啟選單');
+    navMenu.setAttribute('aria-hidden', !isActive);
   });
 
   // 點擊外部關閉選單
@@ -33,6 +34,7 @@ export function initHamburgerMenu() {
       navMenu.classList.remove('active');
       hamburgerBtn.setAttribute('aria-expanded', 'false');
       hamburgerBtn.setAttribute('aria-label', '開啟選單');
+      navMenu.setAttribute('aria-hidden', 'true');
     }
   });
 
@@ -43,6 +45,7 @@ export function initHamburgerMenu() {
       navMenu.classList.remove('active');
       hamburgerBtn.setAttribute('aria-expanded', 'false');
       hamburgerBtn.setAttribute('aria-label', '開啟選單');
+      navMenu.setAttribute('aria-hidden', 'true');
       hamburgerBtn.focus();
     }
   });
